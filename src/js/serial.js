@@ -307,7 +307,6 @@ var serial = {
             // store inside separate variables in case array gets destroyed
             var data = self.outputBuffer[0].data,
                 callback = self.outputBuffer[0].callback;
-            
             if (!self.connected) {
                 console.log('attempting to send when disconnected');
                 if (callback) callback({

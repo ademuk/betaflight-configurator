@@ -153,7 +153,7 @@ var MSP = {
         }
         var bufferOut,
             bufView;
-
+        //console.log(MSPCodesToName[code])
          if (!callback_onerror) {
              var callbackOnError = false;
          } else {

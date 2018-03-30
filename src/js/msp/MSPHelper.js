@@ -138,6 +138,7 @@ MspHelper.prototype.process_data = function(dataHandler) {
                 RC.active_channels = data.byteLength / 2;
                 for (var i = 0; i < RC.active_channels; i++) {
                     RC.channels[i] = data.readU16();
+                    console.log(RC.channels);
                 }
                 break;
             case MSPCodes.MSP_RAW_GPS:
@@ -620,6 +621,7 @@ MspHelper.prototype.process_data = function(dataHandler) {
             case MSPCodes.MSP_API_VERSION:
                 CONFIG.mspProtocolVersion = data.readU8();
                 CONFIG.apiVersion = data.readU8() + '.' + data.readU8() + '.0';
+                debugger;
                 break;
 
             case MSPCodes.MSP_FC_VARIANT:

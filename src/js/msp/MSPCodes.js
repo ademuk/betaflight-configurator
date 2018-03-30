@@ -155,3 +155,9 @@ var MSPCodes = {
     MSP_DEBUGMSG:                   253, // Not used
     MSP_DEBUG:                      254
 };
+
+var MSPCodesToName = Object.keys(MSPCodes)
+  .reduce((prev, curr) => {
+     prev[MSPCodes[curr]] = curr;
+     return prev;
+}, {})
