@@ -34,6 +34,7 @@ var serial = {
         self.logHead = 'SERIAL: ';
 
         chrome.serial.connect(path, options, function (connectionInfo) {
+            console.log('chrome.runtime.lastError', chrome.runtime.lastError);
             if (chrome.runtime.lastError) {
                 console.error(chrome.runtime.lastError.message);
             }
@@ -240,6 +241,17 @@ var serial = {
         });
     },
     disconnect: function (callback) {
+      const mspMockData = Object.keys(MSPMockData)
+        .reduce((prev, key) => {
+          const base64 = btoa(String.fromCharCode(...new Uint8Array(MSPMockData[key])));
+          prev[key] = base64;
+          return prev;
+        }, {});
+
+        chrome.storage.local.set({'mspMockData': mspMockData});
+
+        console.log('MSP Mock saved');
+
         var self = this;
         self.connected = false;
 

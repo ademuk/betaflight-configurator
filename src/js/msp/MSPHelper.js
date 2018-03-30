@@ -621,7 +621,6 @@ MspHelper.prototype.process_data = function(dataHandler) {
             case MSPCodes.MSP_API_VERSION:
                 CONFIG.mspProtocolVersion = data.readU8();
                 CONFIG.apiVersion = data.readU8() + '.' + data.readU8() + '.0';
-                debugger;
                 break;
 
             case MSPCodes.MSP_FC_VARIANT:

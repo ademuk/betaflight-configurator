@@ -14,6 +14,25 @@ $(document).ready(function () {
 //Process to execute to real start the app
 function startProcess() {
 
+  function base64ToArrayBuffer(base64) {
+    var binary_string =  window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array( len );
+    for (var i = 0; i < len; i++)        {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+  chrome.storage.local.get('mspMockData', function ({mspMockData}) {
+    if (mspMockData) {
+      console.log('Loaded MSP Mock Data');
+      MSPMockData = Object.keys(mspMockData).reduce((prev, key) => {
+        prev[key] = base64ToArrayBuffer(mspMockData[key]);
+        return prev;
+      }, {});
+    }
+  });
+
     // translate to user-selected language
     i18n.localizePage();
 
